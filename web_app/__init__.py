@@ -1,15 +1,16 @@
 #__init__.py
 
+import os
 from flask import Flask
 
-from route import route
-
-from dotenv import load_dotenv
-import os
 from web_app.models import db, migrate
 
+from web_app.routes import route
 
-DATABASE_URI = ""
+from dotenv import load_dotenv
+
+
+DATABASE_URI = "postgres://henlxuqj:aeumGWYFAxsOULrbEIRxQ2LfktUlBWMH@ruby.db.elephantsql.com:5432/henlxuqj"
 
 def create_app():
     app = Flask(__name__)
