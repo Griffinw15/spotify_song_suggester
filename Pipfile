@@ -15,7 +15,6 @@ python-dotenv = "*"
 keras = "*"
 sklearn = "*"
 plotly = "*"
-tensorflow = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 

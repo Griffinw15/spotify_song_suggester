@@ -1,10 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-​
+
 db = SQLAlchemy()
 migrate = Migrate()
-​
-​
+
 # class Tracks(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     artist_name = db.Column(db.String(256))
@@ -26,7 +25,7 @@ migrate = Migrate()
 #     tempo = db.Column(db.Float)
 #     duration_ms = db.Column(db.Integer)
 #     time_signature = db.Column(db.Integer)
-​
+
 class Songs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     acousticness = db.Column(db.Float)

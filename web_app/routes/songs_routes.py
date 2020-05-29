@@ -1,11 +1,11 @@
-from flask import Blueprint, jsonify, render_template, request, redirect
-import os
-from web_app.models import Songs, db
-import psycopg2
-from web_app.predictions import find_similar
+##from flask import Blueprint, jsonify, render_template, request, redirect
+#import os
+#from web_app.models import Songs, db
+#import psycopg2
+#from web_app.predictions import find_similar
 from dotenv import load_dotenv 
 
-songs_routes = Blueprint("songs_routes", __name__)
+songs_routes = Blueprint("songs_routes")
 
 load_dotenv()
 
@@ -27,8 +27,19 @@ def song_recommender(artist=None, song_name=None):
     curpg.execute(query)
     track_id = curpg.fetchall()
     track_id[0][0]
-    return track_id[0][0]
+    loaded_model = pickle.load(open('finalizedmodel.sav', 'rb'))
+    data = loaded_model.predict(track_id)
+    music = []
+    for i in data:
+        query2 = f"SELECT Songs.name from Songs where Songs.track_id = '{i}'"
+        curpg.execute(query2)
+        track_name = curpg.fetchall()
+        music.append(track_name[0][0])
+        #music.append(track_name)
+    return music
     #Songs(track_name=song_name)
+
+
 
 # for i in column:
 #     if artist_name == i[0]
