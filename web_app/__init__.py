@@ -16,12 +16,12 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 
-DATABASE_URI = "postgres://henlxuqj:aeumGWYFAxsOULrbEIRxQ2LfktUlBWMH@ruby.db.elephantsql.com:5432/henlxuqj"
+DATABASE_URL = "postgres://henlxuqj:aeumGWYFAxsOULrbEIRxQ2LfktUlBWMH@ruby.db.elephantsql.com:5432/henlxuqj"
 
 def create_app():
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False # suppress warning messages
     db.init_app(app)
     migrate.init_app(app, db)
@@ -57,6 +57,8 @@ def create_app():
             music.append(track_name[0][0])
             #music.append(track_name)
         return music
+        conpg.commit()
+        conpg.close()
     return app
 
 #if __name__ == "__main__":
